@@ -1,14 +1,11 @@
-# Dockerfile
 FROM quay.io/keycloak/keycloak:21.1.1
 
-# Directorio de trabajo
 WORKDIR /opt/keycloak
 
-# Desactivar strict hostname (útil en entornos cloud)
 ENV KC_HOSTNAME_STRICT=false
+ENV KEYCLOAK_ADMIN=admin
+ENV KEYCLOAK_ADMIN_PASSWORD=admin
 
-# Exponer el puerto HTTP de Keycloak
 EXPOSE 8080
 
-# Arrancar en modo desarrollo (HTTP)
-ENTRYPOINT ["./bin/kc.sh", "start-dev", "--http-port=8080"]
+CMD ["start-dev", "--http-port=8080"]
